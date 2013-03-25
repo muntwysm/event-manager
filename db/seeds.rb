@@ -27,7 +27,7 @@ items = Item.create([
 
 locations = Location.create([
 	{:name => 'ECC - Kilchberg', :address => 'Seestrasse 169, 8802 Kilchberg', :map => 'http://goo.gl/maps/rIHHh'},
-	{:name => 'LS - Wädenswil', :address => 'Steinacherstrasse 140, 8820 Wädenswil', :map => 'http://goo.gl/maps/rpVXb'},
+	{:name => 'LS - Waedenswil', :address => 'Steinacherstrasse 140, 8820 Waedenswil', :map => 'http://goo.gl/maps/rpVXb'},
 	{:name => 'MS - Kilchberg', :address => 'Nidelbadstrasse 49, Kilchberg 8802', :map => 'http://goo.gl/maps/eKjHh'},
 	{:name => 'LS & MS - Baden', :address => 'Burghaldenstrasse 6, 5400 Baden', :map => 'http://goo.gl/maps/JnRud'},
 	{:name => 'US - Adliswil', :address => 'Eichenweg 2, 8134 Adliswil', :map => 'http://goo.gl/maps/46rLO'},
