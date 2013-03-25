@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>Map:</b>
-  <%= @location.map %>
+  <b>Google map url:</b>
+  <%= link_to @location.map, @location.map, :target => "_blank" %>
 </p>
 
 
