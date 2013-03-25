@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Qty:</b>
+  <%= @contribution.qty %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @contribution.event %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @contribution.item %>
+</p>
+
+<p>
+  <b>Contributor:</b>
+  <%= @contribution.contributor %>
+</p>
+
+<p>
+  <b>Authtoken:</b>
+  <%= @contribution.authtoken %>
+</p>
+
+<p>
+  <b>Req:</b>
+  <%= @contribution.req %>
+</p>
+
+
+<%= link_to 'Edit', edit_contribution_path(@contribution) %> |
+<%= link_to 'Back', contributions_path %>

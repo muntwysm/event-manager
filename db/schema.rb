@@ -11,13 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325195240) do
+ActiveRecord::Schema.define(:version => 20130325210208) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "qty"
+    t.integer  "event_id"
+    t.integer  "item_id"
+    t.string   "contributor"
+    t.string   "authtoken"
+    t.boolean  "req"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "contributions", ["event_id"], :name => "index_contributions_on_event_id"
+  add_index "contributions", ["item_id"], :name => "index_contributions_on_item_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"

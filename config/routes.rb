@@ -1,5 +1,8 @@
 EventManager::Application.routes.draw do
 
+  resources :contributions
+
+
   resources :requirements
 
 
