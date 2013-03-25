@@ -1,8 +1,10 @@
 ---
-background-2013.png: background-2013-d48ed2b970ad07c4bf6ec4c9abf7c244.png
-background-2013/index.png: background-2013-d48ed2b970ad07c4bf6ec4c9abf7c244.png
+background-2013.png: background-2013-1b38831000b9ecddc0191806c7e18822.png
+background-2013/index.png: background-2013-1b38831000b9ecddc0191806c7e18822.png
 background-gradient.png: background-gradient-967767402c2cf3c09e1cb8f9bed22cb2.png
 background-gradient/index.png: background-gradient-967767402c2cf3c09e1cb8f9bed22cb2.png
+background.svg: background-da631424ffe0499a9a4fdfae8c9ad432.svg
+background/index.svg: background-da631424ffe0499a9a4fdfae8c9ad432.svg
 background5.png: background5-e3518bb60f51bb5c6ca19f2eb60aa9a7.png
 background5/index.png: background5-e3518bb60f51bb5c6ca19f2eb60aa9a7.png
 contribute.png: contribute-b585976d3e9957f0c91bc5ad2873f7d7.png
@@ -21,10 +23,10 @@ thankyou2.jpg: thankyou2-b203e7958172c6ea1e332c41e259f056.jpg
 thankyou2/index.jpg: thankyou2-b203e7958172c6ea1e332c41e259f056.jpg
 thankyou3.png: thankyou3-1ab794c8acf079192c158a577a7d6ce4.png
 thankyou3/index.png: thankyou3-1ab794c8acf079192c158a577a7d6ce4.png
-application.js: application-0496163a4de04ba2de7bb4f75a725afe.js
-application/index.js: application-0496163a4de04ba2de7bb4f75a725afe.js
-application.css: application-ba7cdf1217b311c5db2211890308fba2.css
-application/index.css: application-ba7cdf1217b311c5db2211890308fba2.css
+application.js: application-d0b76fba7cc374d820029ae22be4dd22.js
+application/index.js: application-d0b76fba7cc374d820029ae22be4dd22.js
+application.css: application-45d0a1f7c1ff0a9e55771b224dd89051.css
+application/index.css: application-45d0a1f7c1ff0a9e55771b224dd89051.css
 blueprint/plugins/buttons/icons/cross.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/cross/index.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/key.png: blueprint/plugins/buttons/icons/key-f95cffaa01ae4b233cb04e2899cee363.png
