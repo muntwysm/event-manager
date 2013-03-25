@@ -33,4 +33,9 @@ locations = Location.create([
 	{:name => 'US - Adliswil', :address => 'Eichenweg 2, 8134 Adliswil', :map => 'http://goo.gl/maps/46rLO'},
 	{:name => 'Im Brandt', :address => 'Bodenstrasse 19, 8800 Thalwil', :map => 'http://goo.gl/maps/5rF26'}])
 
+events = Event.create([
+	{:name => 'Spring Dance', :location_id => '3', :date => DateTime.strptime("28/04/2013 19:00", "%d/%m/%Y %H:%M")},
+	{:name => 'End of year BBQ', :location_id => '1', :date => DateTime.strptime("15/06/2013 12:30", "%d/%m/%Y %H:%M")}])
+
+
 

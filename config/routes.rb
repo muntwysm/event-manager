@@ -1,13 +1,10 @@
 EventManager::Application.routes.draw do
+
   resources :locations
-
-
-  resources :items
-
-
+  resources :events
   resources :categories
-
-
+  resources :items
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
