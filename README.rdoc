@@ -1,7 +1,7 @@
 # Event manager
 
 This is a basic applicaition for
-co-ordinating volunteer population
+co-ordinating a volunteer population
 who are willing to contribute items or
 time towards an event.
 by [Stefan Muntwyler]
