@@ -23,16 +23,16 @@ make a contribution.</span></h1>
 	<table>
 		<tr>
 			<th>Date</th>
-		  	<th>Quantity</th>
-		  	<th>Item -- Unit</th>
+		  	<th>Item</th>
+		  	<th>Quantity - Unit</th>
 		  	<th>Contributed by</th>
 		  	<th>For Event</th>
 		</tr>
 	<% @contributions.each do |contribution| %>
 		<tr>
 		  <td><%=h short_version_of contribution.created_at %></td>
-		  <td><%=h contribution.qty %></td>
-		  <td><%=h contribution.item.name_and_unit %></td>
+		  <td><%=h contribution.item.name %></td>
+		  <td><%=h contribution.qty %> - <%=h contribution.item.unit %></td>
 		  <td><%= truncate contribution.contributor,:length => 22 %></td>
 		  <td><%=h link_to contribution.event.name, contribution.event %></td>
 		</tr>
