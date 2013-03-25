@@ -76,7 +76,7 @@ contributions = Contribution.create ([
 	{:qty => 12, :item_id => '5', :event_id => '2', :contributor => 'Johnson Family', :req => '1'},
 	{:qty => 10, :item_id => '6', :event_id => '2', :contributor => 'Arnold Family', :req => '1'},
 	{:qty => 20, :item_id => '7', :event_id => '2', :contributor => 'Arnold Family', :req => '1'},
-	{:qty => 3, :item_id => '8', :event_id => '2', :contributor => '', :req => '1'},
+	{:qty => 3, :item_id => '8', :event_id => '2', :contributor => 'David & Jenny', :req => '1'},
 	{:qty => 3, :item_id => '9', :event_id => '2', :contributor => 'Arnold Family', :req => '1'},
 	{:qty => 2, :item_id => '10', :event_id => '2', :contributor => 'Jess Taylor', :req => '1'},
 	{:qty => 5, :item_id => '1', :event_id => '1', :contributor => 'David & Jenny', :req => 1}])

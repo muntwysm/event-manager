@@ -35,6 +35,8 @@ class RequirementsController < ApplicationController
   # GET /requirements/1/edit
   def edit
     @requirement = Requirement.find(params[:id])
+    @items = Item.all
+    @events = Event.all
   end
 
   # POST /requirements

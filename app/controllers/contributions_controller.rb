@@ -35,6 +35,8 @@ class ContributionsController < ApplicationController
   # GET /contributions/1/edit
   def edit
     @contribution = Contribution.find(params[:id])
+    @events = Event.all
+    @items = Item.all
   end
 
   # POST /contributions

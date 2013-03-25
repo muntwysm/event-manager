@@ -17,11 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :event %><br />
-    <%= f.text_field :event %>
+    <%= f.collection_select :event_id,
+      @events, 
+      :id, 
+      :name, 
+      :include_blank => '-- Select an event --' %>
   </div>
   <div class="field">
     <%= f.label :item %><br />
-    <%= f.text_field :item %>
+    <%= f.collection_select :item_id,
+      @items, 
+      :id, 
+      :name, 
+      :include_blank => '-- Select an item --' %>
   </div>
   <div class="actions">
     <%= f.submit %>
