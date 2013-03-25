@@ -9,8 +9,7 @@ categories = Category.create([
   {:name => 'Volunteer'},
   {:name => 'Food'},
   {:name => 'Drink'},
-  {:name => 'Supplies'}#no comma to end
-  ])
+  {:name => 'Supplies'}])
   
 items = Item.create([
   {:name => 'Coke', :category_id => '3', :unit => '1.5 lt Bottles'},
@@ -24,5 +23,14 @@ items = Item.create([
   {:name => 'Volunteer B', :category_id => '1', :unit => 'People'},
   {:name => 'Volunteer C', :category_id => '1', :unit => 'People'},
   {:name => 'Volunteer D', :category_id => '1', :unit => 'People'},
-  {:name => 'Coke Zero', :category_id => '3', :unit => '1.5 lt Bottles'}#no comma to end
-  ])
+  {:name => 'Coke Zero', :category_id => '3', :unit => '1.5 lt Bottles'}])
+
+locations = Location.create([
+	{:name => 'ECC - Kilchberg', :address => 'Seestrasse 169, 8802 Kilchberg', :map => 'http://goo.gl/maps/rIHHh'},
+	{:name => 'LS - Wädenswil', :address => 'Steinacherstrasse 140, 8820 Wädenswil', :map => 'http://goo.gl/maps/rpVXb'},
+	{:name => 'MS - Kilchberg', :address => 'Nidelbadstrasse 49, Kilchberg 8802', :map => 'http://goo.gl/maps/eKjHh'},
+	{:name => 'LS & MS - Baden', :address => 'Burghaldenstrasse 6, 5400 Baden', :map => 'http://goo.gl/maps/JnRud'},
+	{:name => 'US - Adliswil', :address => 'Eichenweg 2, 8134 Adliswil', :map => 'http://goo.gl/maps/46rLO'},
+	{:name => 'Im Brandt', :address => 'Bodenstrasse 19, 8800 Thalwil', :map => 'http://goo.gl/maps/5rF26'}])
+
+
