@@ -1,5 +1,8 @@
 EventManager::Application.routes.draw do
 
+  resources :requirements
+
+
   resources :locations
   resources :events
   resources :categories

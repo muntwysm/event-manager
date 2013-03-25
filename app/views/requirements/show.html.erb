@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Event:</b>
+  <%= @requirement.event.name %>
+  <%= short_date_time @requirement.event.date %>
+  <br />
+  <%= @requirement.event.details %>
+</p>
+
+<p>
+  <b>Requirement:</b>
+  <%= @requirement.item.name_and_unit %>
+  <b>Qty:</b> <%= @requirement.qty %>
+</p>
+
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>
