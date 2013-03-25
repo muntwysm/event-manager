@@ -25,6 +25,8 @@ class ContributionsController < ApplicationController
   # GET /contributions/new.json
   def new
     @contribution = Contribution.new
+    @events = Event.all
+    @items = Item.all
 
     respond_to do |format|
       format.html # new.html.erb
