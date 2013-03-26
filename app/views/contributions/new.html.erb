@@ -5,8 +5,8 @@
 		<%=h @event.location.name %>
 </h3>
 
-<% form_for(@contribution) do |f| %>
-  <%= f.error_messages %>
+<%= form_for(@contribution) do |f| %>
+
 	<table id="new-contribution">
 	<tr valign="top">
 		<td>
@@ -25,7 +25,7 @@
 	</div>
 	<div>
     <h6>Your Name</h6>
-    <%= f.text_field :email, "max" => 18 %><br />
+    <%= f.text_field :contributor, "max" => 18 %><br />
 		<small>Examples: Jones Family. Mrs Williams. Sarah Jane G6</small>
   </div>
 		</td>

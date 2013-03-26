@@ -3,7 +3,7 @@
     <%=h @event.location.name %>
 </h3>
 
-<% form_for(@contribution) do |f| %>
+<%= form_for(@contribution) do |f| %>
   <% if @contribution.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contribution.errors.count, "error") %> prohibited this contribution from being saved:</h2>
