@@ -1,90 +1,127 @@
 class EventsController < ApplicationController
   before_filter :require_admin, :except => [:index, :show]
-  
+
   # GET /events
-  # GET /events.json
+  # GET /events.xml
   def index
     @events = Event.all
+    @title = "Events"
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @events }
+      format.xml  { render :xml => @events }
     end
   end
 
   # GET /events/1
-  # GET /events/1.json
+  # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
     @title = "Event '#{@event.name}'"
     @requirements = @event.requirements
-    @contributions = Contribution.find(:all, 
-      :conditions => ["event_id = ? AND req = ?", params[:id], true])
+    @contributions_count = Contribution.find(:all, :conditions => ["event_id = ?", params[:id]]).count
+    searchPhrase = " AND contributor LIKE '%#{params[:search]}%' " if params[:search]
+    sql = "SELECT *
+          FROM contributions
+          WHERE event_id = #{params[:id]}
+          #{searchPhrase}
+          AND item_id NOT IN 
+               (SELECT item_id
+               FROM requirements
+               WHERE event_id = #{params[:id]})"
+    @orphaned_contributions = Contribution.find_by_sql(sql) 
+    @not_needed = Contribution.find(:all, :conditions => ["event_id = ? AND req = ? #{searchPhrase} ", params[:id], false])
+
+    if params[:search]
+    searchPhrase = " AND contributor LIKE '%#{params[:search]}%' " if params[:search]
+    sql = "SELECT *
+          FROM requirements
+          WHERE event_id = #{params[:id]}
+          AND item_id IN 
+               (SELECT item_id
+               FROM contributions
+               WHERE event_id = #{params[:id]}
+               #{searchPhrase}
+               AND req = 1 )"
+      @reqs = Contribution.find_by_sql(sql) 
+    else
+      @reqs = @event.requirements
+    end
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @event }
+      format.xml  { render :xml => @event }
     end
   end
 
   # GET /events/new
-  # GET /events/new.json
+  # GET /events/new.xml
   def new
     @event = Event.new
+    @event.requirements.build
+    @locations = Location.all
+    @title = "New Event"
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @event }
+      format.xml  { render :xml => @event }
     end
   end
 
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @title = "Edit '#{@event.name}' Event"
+    @event.requirements.build
     @locations = Location.all
   end
 
   # POST /events
-  # POST /events.json
+  # POST /events.xml
   def create
     @event = Event.new(params[:event])
+    @locations = Location.all
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        flash[:success] = "Event '#{@event.name}' successfully created."
+        format.html { redirect_to(@event, :success => 'Event was successfully created.') }
+        format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
-        format.html { render action: "new" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # PUT /events/1
-  # PUT /events/1.json
+  # PUT /events/1.xml
   def update
+    params[:event][:existing_requirement_attributes] ||= {}
+
     @event = Event.find(params[:id])
+    @locations = Location.all
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to(edit_event_path(@event))} #render :action => "edit"} #format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
+        format.xml  { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /events/1
-  # DELETE /events/1.json
+  # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
+      format.html { redirect_to(events_url) }
+      format.xml  { head :ok }
     end
   end
 end

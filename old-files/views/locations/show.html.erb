@@ -1,0 +1,16 @@
+<p>
+  <b>Name:</b>
+  <%=h @location.name %>
+</p>
+<p>
+  <b>Address:</b>
+  <%=h @location.address %> 
+</p>
+	
+<p>
+	<%=h link_to 'View map', @location.map, :target => '_blank' %>
+</p>
+
+<br />
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

@@ -1,6 +1,44 @@
 <h1>Editing contribution</h1>
 
-<%= render 'form' %>
+<%= form_for(@contribution) do |f| %>
+  <% if @contribution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contribution.errors.count, "error") %> prohibited this contribution from being saved:</h2>
+      <ul>
+      <% @contribution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Show', @contribution %> |
-<%= link_to 'Back', contributions_path %>
+<table id="new-contribution">
+	<tr valign="top">
+		<td>
+			<h6><%= @contribution.item.name %> "<%= @contribution.item.unit %>" </h6>
+			<h6>Still required: <%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %></h6>
+		</td>
+		<td>
+	<div>
+		<h6>Your contribution</h6>
+		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id) + @contribution.qty
+				nums = (1..max_qty).to_a
+				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }
+				
+ 		%>
+		<%= f.select(:qty, quantities) %>
+	</div>
+
+	<div>
+    <h6>Your Name</h6>
+    <%= f.text_field :contributor, "max" => 18 %><br />
+		<small>Examples: Jones Family. Mrs Williams. Sarah Jane G6</small>
+  </div>
+		</td>
+	</tr>
+	</table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

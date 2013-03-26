@@ -3,48 +3,126 @@
 
 <h3><%=h @event.location.name %>. 
     <%=h short_date_time @event.date %>
-    <small><%=h link_to 'View Map', @event.location.map, :target => '_blank' %></small>
+    <small><%=h link_to 'View map', @event.location.map, :target => '_blank' %></small>
 </h3>
 
-<h2>Requirements</h2>
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Requirement</th>
-  </tr>
-
-<% @requirements.each do |requirement| %>
-  <tr>
-    <td><%= requirement.item.name %></td>
-    <td><%= requirement.qty %> <%= requirement.item.unit %></td>
-    <td><%= link_to 'Make contribution', add_contribution_url(:id => @event.id,:req_id => requirement.id) %></td>
-  </tr>
+<% if current_user %>
+  <%=h link_to 'Edit Event or Requirements', edit_event_path(@event) %>
 <% end %>
-</table>
 
-<table>
-  <tr>
-    <th>Event</th>
-    <th>Qty</th>
-    <th>Item</th>
-    <th>Contributor</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @requirements.count > 0 %>
+  <h2>Requirements:</h2>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Requirement</th>
+      <th>Quantity Still Required</th>
+      <th>Contributed</th>
+    </tr>
 
-<% @contributions.each do |contribution| %>
-  <tr>
-    <td><%= contribution.event.name %></td>
-    <td><%= contribution.qty %></td>
-    <td><%= contribution.item.name_and_unit %></td>
-    <td><%= contribution.contributor %></td>
-    <td><%= link_to 'Options', contribution %></td>
-  </tr>
+    <% @requirements.each do |requirement| %>
+    <% stillRequired = @event.contributions_still_required_for(requirement.item.id, @event.id) 
+        contributed = requirement.qty - stillRequired
+        ratio = contributed.to_f / requirement.qty.to_f * 100
+        percentageContributed = number_to_percentage(ratio, :precision => 0)%>
+    
+      <tr>
+        <td><%=h requirement.item.name %></td>
+        <td><%=h requirement.qty %> <%=h requirement.item.unit %></td>
+        <td><%=h stillRequired %> <%=h requirement.item.unit if stillRequired > 0 %>
+        </td> 
+        <td><%=h percentageContributed %>
+        </td>
+        <td>
+            <% if @event.contribution_less_than_required_for(requirement.item.id, @event.id) %> 
+                <%= link_to 'Make Contribution', add_contribution_url(:id => @event.id,:req_id => requirement.id) %>
+            <% else %>
+                Requirement (<%=h requirement.qty %>) met
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h2>Contributions:</h2>
+
+  <% if @contributions_count > 0 %>
+    <% form_tag event_path, :method => 'get' do %>
+      <p>Contributed by 
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+        <%= link_to 'Clear', event_path %>
+      </p>
+    <% end %>
+  <% end %>
 <% end %>
-</table>
-<br />
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if @contributions_count > 0 %>
+  <% @reqs.each do |requirement| %>
+  <table>
+    <tr>
+        <td><h3><%=h requirement.item.name %></h3></td>
+    </tr>
+
+          <% @contributions = contributions_for(params[:search],params[:id],requirement.item.id) %>
+
+          <% if @contributions.count > 0 %>
+            <table id="item-contributions">
+              <tr>
+                <th>Date</th>
+                <th>Contributed by</th>
+                <th>Quantity</th>
+              </tr>
+
+            <% @contributions.each do |contribution| %>
+              <tr>
+                <td><%=h short_version_of contribution.created_at %></td>
+                <td><%= link_to contribution.contributor %></td>
+                <td><%=h contribution.qty %></td>
+                <td><%= link_to 'Options', contribution %></td>
+              </tr>
+            <% end %>
+            </table>
+          <% else %>
+            <table id="item-contributions"><tr><td>There are no contributions for '<%=h requirement.item.name %>'.</td></tr></table>
+          <% end %>
+  </table>
+  <% end %>
+
+  <% if @orphaned_contributions.count > 0 or @not_needed.count > 0 %>
+    <h3>Contributions no longer needed</h3>
+    <p>Due to recent changes in the Event requirements, the following contributions are no longer required. If you made one or more of the following Contributions, you may wish to delete them via the 'Options' page.</p>
+    <table id="orphan-contributions">
+      <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Contributed by</th>
+        <th>Quantity</th>
+      </tr>
+
+    <% @orphaned_contributions.each do |orphan| %>
+      <tr>
+        <td><del><%=h short_version_of orphan.created_at %></del></td>
+        <td><del><%=h orphan.item.name %></del></td>
+        <td><del><%= link_to orphan.contributor %></del></td>
+        <td><del><%=h orphan.qty %></del></td>
+        <td><%= link_to 'Options', orphan %></td>
+      </tr>
+    <% end %>
+    <% @not_needed.each do |orphan| %>
+      <tr>
+        <td><del><%=h short_version_of orphan.created_at %></del></td>
+        <td><del><%=h orphan.item.name %></del></td>
+        <td><del><%= link_to orphan.contributor %></del></td>
+        <td><del><%=h orphan.qty %></del></td>
+        <td><%= link_to 'Options', orphan %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+
+<% else %>
+  <% if @requirements.count > 0 %>
+  <p>No contributions have been made.</p>
+  <% end %>
+<% end %>

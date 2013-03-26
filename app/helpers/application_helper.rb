@@ -1,3 +1,4 @@
+# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   # Return a title on a per-page basis.
   def title
@@ -14,14 +15,14 @@ module ApplicationHelper
 	end
 
 	def short_date_time(date)
-		date.strftime("%a %e-%b-%Y at %H:%M")
+		date.strftime("%a %e-%b-%Y %H:%M")
 	end
 
 	def contributions_for(search,event_id,item_id)
 				if search
-					@contributions = Contribution.find(:all, :conditions => ["email LIKE ? AND event_id = ? AND item_id = ? AND req = ?", "%#{search}%", event_id, item_id, true], :order => "created_at")
+					@contributions = Contribution.find(:all, :conditions => ["contributor LIKE ? AND event_id = ? AND item_id = ? AND req = ?", "%#{search}%", event_id, item_id, true], :order => "created_at")
 				else
-					@contributions = Contribution.all(:conditions => ["event_id = ? AND item_id = ? AND req = ? ", event_id, item_id, true], :order => "created_at")
+					@contributions = Contribution.all(:conditions => ["event_id = ? AND item_id = ? AND req = ?", event_id, item_id, true], :order => "created_at")
 				end
 	end
 

@@ -1,0 +1,45 @@
+<div class="requirement">
+<% new_or_existing = requirement.new_record? ? 'new' : 'existing' %>
+<% prefix = "event[#{new_or_existing}_requirement_attributes][]" %>
+
+	<% fields_for prefix, requirement do |requirement_form| %>
+			<% 	minQty = 	count_contributions_for(requirement.event_id, requirement.item_id)
+					nums = (minQty..50).to_a
+					quantities = nums.collect{ |n| [n, n] }	%>
+
+			<% if new_or_existing == "existing" %>
+			<tr>
+			<td>
+					<%= requirement.item.name  %>
+			</td>
+			<td>
+					<%= requirement.item.unit  %>
+			</td>
+			<td>
+				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
+				<%= "#{minQty} already contributed" if minQty > 0 %>
+			</td>
+			<td>
+				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+			</td>
+			</tr>
+
+			<% elsif Item.not_yet_required(params[:id]).count > 0 %>
+			<tr>
+				<td>		
+					<%= requirement_form.collection_select(:item_id, Item.not_yet_required(params[:id]), :id, :name_and_unit, :include_blank => true) %>
+				</td>
+				<td>
+				</td>
+				<td>
+				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
+				</td>
+				<td>
+				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+				</td>
+			</tr>
+			<% end %>
+			
+	<% end %>
+
+</div>

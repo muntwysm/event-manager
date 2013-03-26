@@ -1,8 +1,5 @@
 EventManager::Application.routes.draw do
   
-  resources :users, :user_sessions
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -18,8 +15,13 @@ EventManager::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match 'events/:id/new_contribution/:req_id' => 'contributions#new', :as => :add_contribution
+  match ':search/contributions' => 'contributions#index', :as => :individual_contributions
+  match ':id/contributions/:search' => 'events#show', :as => :individual_event_contributions
+  match 'contributions/:id/not_needed' => 'contributions#not_needed', :as => :not_needed
+  match 'contributions/:id/make_needed' => 'contributions#make_needed', :as => :make_needed
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :contributions
@@ -27,7 +29,9 @@ EventManager::Application.routes.draw do
   resources :locations
   resources :events
   resources :categories
-  resources :items
+  resources :items  
+  resources :users
+  resources :user_sessions
 
   # Sample resource route with options:
   #   resources :products do
