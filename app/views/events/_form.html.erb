@@ -31,7 +31,15 @@
       :name, 
       :include_blank => '-- Select a location --' %>
   </div>
+
+  <h2>Requirements:</h2>
+  <div id="requirements">
+  <% @event.requirements.each do |requirement|%>
+    <%= render 'requirement', :requirement => requirement %> 
+  <% end %>
+  </div>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update event requirements' %>
   </div>
 <% end %>

@@ -5,6 +5,11 @@
     <%=h short_date_time @event.date %>
     <small><%=h link_to 'View map', @event.location.map, :target => '_blank' %></small>
 </h3>
+<p><b>Details</b>
+<%= @event.details %>
+</p>
+
+<br />
 
 <% if current_user %>
   <%=h link_to 'Edit Event or Requirements', edit_event_path(@event) %>

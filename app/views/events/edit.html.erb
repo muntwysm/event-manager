@@ -2,13 +2,4 @@
 
 <%= render 'form' %>
 
-	<h2>Requirements:</h2>
-
-
-	<div id="requirements">
-  <% @event.requirements.each do |requirement|%>
-    <%= render 'requirement', :requirement => requirement %> 
-  <% end %>
-	</div>
-
-<%= link_to 'Finished Adding/Updating', @event %>
+<%= link_to 'Finished Adding and Updating', @event %>
