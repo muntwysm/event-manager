@@ -87,7 +87,7 @@ contributions = Contribution.create ([
 	{:qty => 3, :item_id => '8', :event_id => '2', :contributor => 'David & Jenny', :req => '1'},
 	{:qty => 3, :item_id => '9', :event_id => '2', :contributor => 'Arnold Family', :req => '1'},
 	{:qty => 2, :item_id => '10', :event_id => '2', :contributor => 'Jess Taylor', :req => '1'},
-	{:qty => 5, :item_id => '1', :event_id => '1', :contributor => 'David & Jenny', :req => 1}])
+	{:qty => 5, :item_id => '1', :event_id => '1', :contributor => 'David & Jenny', :req => '1'}])
 
 users = User.create ([
 	{:username => 'admin', :email => 'mnelson@zis.ch', 
