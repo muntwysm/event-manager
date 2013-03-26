@@ -30,7 +30,7 @@ class EventsController < ApplicationController
                FROM requirements
                WHERE event_id = #{params[:id]})"
     @orphaned_contributions = Contribution.find_by_sql(sql) 
-    @not_needed = Contribution.find(:all, :conditions => ["event_id = ? AND req = ? #{searchPhrase} ", params[:id], false])
+    @not_needed = Contribution.find(:all, :conditions => ["event_id = ? AND req = 0 #{searchPhrase} ", params[:id]])
 
     if params[:search]
     searchPhrase = " AND contributor LIKE '%#{params[:search]}%' " if params[:search]
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
                FROM contributions
                WHERE event_id = #{params[:id]}
                #{searchPhrase}
-               AND req = 1 )"
+               AND req = 1)"
       @reqs = Contribution.find_by_sql(sql) 
     else
       @reqs = @event.requirements
@@ -104,7 +104,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(edit_event_path(@event))} #render :action => "edit"} #format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
+        format.html { redirect_to(edit_event_path(@event))} 
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

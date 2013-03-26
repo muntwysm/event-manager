@@ -52,7 +52,7 @@
   <h2>Contributions:</h2>
 
   <% if @contributions_count > 0 %>
-    <% form_tag event_path, :method => 'get' do %>
+    <%= form_tag event_path, :method => 'get' do %>
       <p>Contributed by 
         <%= text_field_tag :search, params[:search] %>
         <%= submit_tag "Search", :name => nil %>
@@ -82,7 +82,7 @@
             <% @contributions.each do |contribution| %>
               <tr>
                 <td><%=h short_version_of contribution.created_at %></td>
-                <td><%= link_to contribution.contributor %></td>
+                <td><%= link_to truncate(contribution.contributor, :length => 22), individual_event_contributions_url(:search => contribution.contributor) %></td>
                 <td><%=h contribution.qty %></td>
                 <td><%= link_to 'Options', contribution %></td>
               </tr>
@@ -109,7 +109,7 @@
       <tr>
         <td><del><%=h short_version_of orphan.created_at %></del></td>
         <td><del><%=h orphan.item.name %></del></td>
-        <td><del><%= link_to orphan.contributor %></del></td>
+        <td><del><%= link_to truncate(orphan.contributor,22), individual_event_contributions_url(:search => contribution.email,:id => params[:id]) %></del></td>
         <td><del><%=h orphan.qty %></del></td>
         <td><%= link_to 'Options', orphan %></td>
       </tr>
@@ -118,7 +118,7 @@
       <tr>
         <td><del><%=h short_version_of orphan.created_at %></del></td>
         <td><del><%=h orphan.item.name %></del></td>
-        <td><del><%= link_to orphan.contributor %></del></td>
+        <td><del><%= link_to truncate(orphan.contributor,22), individual_event_contributions_url(:search => contribution.email,:id => params[:id]) %></del></td>
         <td><del><%=h orphan.qty %></del></td>
         <td><%= link_to 'Options', orphan %></td>
       </tr>
