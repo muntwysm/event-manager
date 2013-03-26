@@ -81,7 +81,15 @@ contributions = Contribution.create ([
 	{:qty => 2, :item_id => '10', :event_id => '2', :contributor => 'Jess Taylor', :req => '1'},
 	{:qty => 5, :item_id => '1', :event_id => '1', :contributor => 'David & Jenny', :req => 1}])
 
-
+users = User.create ([
+	{:username => 'admin', :email => 'mnelson@zis.ch', 
+		:crypted_password => 'ea1638d010dcd0b46028c369e0031d28badb1cb442d635792d0813ecfef4f6a822b108c486b9f3388980a0b83ae19752c42f4f2938aacaffe4d4458300b66015', 
+		:password_salt => 'RaTrG2DyNXhxxE9FPwzR', 
+		:persistence_token => '905054eb923004d6131796a411c41d8278e38974d07c55e4bccc9556cf5657e00baa66d30a805f493eca99c4384cde563aa14dd5f37e9e572ff1ecca42cab355'},
+	{:username => 'smuntwyler', :email => 'smuntwyler@zis.ch', 
+		:crypted_password => '9815aef950e070daca000d8570e37e815a105ba281ac009ca869139286de00779e1f9e3b63fee9d439d7eaa58e03ee921501aef28794f22d0378674a003ba767', 
+		:password_salt => '0WwjuIP9eh7aFMctnSz', 
+		:persistence_token => '46334d6b28626181f88763c57ed1a1846e70bc8bb3652bee717ee9d51e47dab2c8c445cb1fdec3a1bc5d35032d8f3dfa10bcfd0b4a39969c88912c4d199e8a96'}])
 
 
 
