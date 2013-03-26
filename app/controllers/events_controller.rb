@@ -16,6 +16,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @title = "Event '#{@event.name}'"
     @requirements = @event.requirements
+    @contributions = Contribution.find(:all, 
+      :conditions => ["event_id = ? AND req = ?", params[:id], true])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
