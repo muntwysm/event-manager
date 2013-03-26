@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	#before_filter :require_admin, :only => :admin
+	before_filter :require_admin, :only => :admin
 
   def home
 		@title = "Home"

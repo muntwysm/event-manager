@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_filter :require_admin
+  
   # GET /items
   # GET /items.json
   def index

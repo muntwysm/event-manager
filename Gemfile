@@ -21,3 +21,4 @@ end
 
 gem 'jquery-rails', '2.0.2'
 gem 'will_paginate', '~> 3.0.0'
+gem 'authlogic'

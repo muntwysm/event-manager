@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_filter :require_admin
+  
   # GET /locations
   # GET /locations.json
   def index
