@@ -1,4 +1,4 @@
-<div class="requirement">
+<div class="requirement-details">
 <% new_or_existing = requirement.new_record? ? 'new' : 'existing' %>
 <% prefix = "event[#{new_or_existing}_requirement_attributes][]" %>
 	<%= fields_for prefix, requirement do |requirement_form| %>
@@ -13,7 +13,7 @@
 			<b>Qty:</b>
 				<%= requirement_form.select(:qty, quantities) %>
 				<small><%= "#{minQty} already contributed" if minQty > 0 %></small>
-				<%= link_to_function "Remove", "$(this).up('.requirement').remove()" %>
+				<%= link_to_function "Remove", "$(this).parent().remove()" %>
 
 			<% elsif Item.not_yet_required(params[:id]).count > 0 %>
 				<b>Item:</b>		
@@ -21,7 +21,7 @@
 						:id, :name_and_unit, :include_blank => true) %>
 				<b>Qty:</b>
 				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
-				<%= link_to_function "Remove", "$(this).up('.requirement').remove()" %>
+				<%= link_to_function "Remove", "$(this).parent().remove()" %>
 			<% end %>
 	</p>
 	<% end %>
