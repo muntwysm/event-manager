@@ -3,7 +3,7 @@ class ContributionsController < ApplicationController
   # GET /contributions.xml
   def index
     @results = Contribution.search(params[:search])
-    @contributions = Contribution.search(params[:search])#.paginate :page => params[:page], :per_page => 30
+    @contributions = Contribution.search(params[:search])#.paginate :page => params[:page], :per_page => 20
     #@contributions = Contribution.paginate :page => params[:page], :per_page => 20
   end
 

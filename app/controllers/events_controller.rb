@@ -42,8 +42,8 @@ class EventsController < ApplicationController
                (SELECT item_id
                FROM contributions
                WHERE event_id = #{params[:id]}
-               #{searchPhrase}
-               AND req = #{bool_value})"
+               #{searchPhrase})"
+               #AND req = #{bool_value})"
       @reqs = Contribution.find_by_sql(sql) 
     else
       @reqs = @event.requirements
