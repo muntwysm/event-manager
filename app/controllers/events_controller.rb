@@ -128,7 +128,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(@new_event, :notice => 'Event duplicated - Please edit event name and date.') }
-      format.json { render json: @events }
+      format.json { render json: @new_event }
     end
   end
 

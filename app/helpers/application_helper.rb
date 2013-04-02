@@ -2,7 +2,7 @@
 module ApplicationHelper
   # Return a title on a per-page basis.
   def title
-    base_title = "Event supplies application"
+    base_title = "Easy Events"
     if @title.nil?
       base_title
     else
