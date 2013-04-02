@@ -72,7 +72,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
-    @title = "Edit '#{@event.name}' Event"
+    @title = "Edit '#{@event.name}' event"
     @event.requirements.build
     @locations = Location.all
   end
@@ -111,6 +111,24 @@ class EventsController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  # GET /posts/1/duplicate
+  def duplicate
+    @event = Event.find(params[:id])
+    @new_event = @event.dup
+    @new_event.name = "Copy of - #{@new_event.name}"
+
+    @event.requirements.each do |requirement|
+      @new_event.requirements << requirement.dup
+    end
+
+    @new_event.save
+
+    respond_to do |format|
+      format.html { redirect_to(@new_event, :notice => 'Event duplicated - Please edit event name and date.') }
+      format.json { render json: @events }
     end
   end
 

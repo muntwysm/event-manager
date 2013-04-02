@@ -19,6 +19,7 @@ EventManager::Application.routes.draw do
   match ':id/contributions/:search' => 'events#show', :as => :individual_event_contributions
   match 'contributions/:id/not_needed' => 'contributions#not_needed', :as => :not_needed
   match 'contributions/:id/make_needed' => 'contributions#make_needed', :as => :make_needed
+  match 'events/:id/duplicate' => 'events#duplicate', :as => :duplicate_event
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
