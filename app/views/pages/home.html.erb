@@ -1,13 +1,13 @@
 <h1>Upcoming events... <span class="small-text">click on 'requirements' and
 make a contribution.</span></h1>
 
+<% if @events.count > 0 %>
 <table>
   <tr class="large">
     <th>Name</th>
     <th>Location</th>
     <th>Date</th>
   </tr>
-
 <% @events.each do |event| %>
   <tr>
     <td class="large"><%=h event.name %></td>
@@ -17,6 +17,9 @@ make a contribution.</span></h1>
   </tr>
 <% end %>
 </table>
+<% else %>
+<h3>There are no upcoming events.</h3>
+<% end %>
 
 <% if @contributions.count > 0 %>
 	<h3>Thank you! The following contributions have recently been made.</h3>

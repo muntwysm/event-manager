@@ -1,5 +1,6 @@
 <h1>Listing events</h1>
 
+<% if @events.count > 0 %>
 <table>
   <tr>
     <th>Name</th>
@@ -23,7 +24,9 @@
   </tr>
 <% end %>
 </table>
-
+<% else %>
+<h3>There are no upcoming events.</h3>
+<% end %>
 <br />
 
 <%= link_to 'New Event', new_event_path %>
