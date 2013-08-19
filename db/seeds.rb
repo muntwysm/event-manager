@@ -36,7 +36,7 @@ locations = Location.create([
 events = Event.create([
 	{:name => 'Spring Dance', :location_id => '3', 
 		:details => 'Volunteer A: 18:30 - 20:30...... Volunteer B: 20:30 - 22:30',
-		:date => DateTime.strptime("28/04/2013 19:00", "%d/%m/%Y %H:%M")},
+		:date => DateTime.strptime("28/08/2013 19:00", "%d/%m/%Y %H:%M")},
 	{:name => 'End of year BBQ', :location_id => '1', :date => DateTime.strptime("15/06/2013 12:30", "%d/%m/%Y %H:%M")}])
 
 requirements = Requirement.create ([
